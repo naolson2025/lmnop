@@ -16,3 +16,15 @@ body {
 #login_form.th, #registration_form.th {
   text-align: right;
 }
+
+.jumbotron {
+  padding: 2rem 1rem;
+}
+
+#header-col, #venue-list, #artist-list, #latest-notes {
+  text-align: center;
+}
+
+#welcome-2, #welcome-1 {
+  text-align: center;
+}

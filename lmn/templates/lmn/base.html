@@ -1,32 +1,41 @@
 {% load static %}
+<!DOCTYPE html>
 <html>
-<head>
-  <title>LMNOP</title>
-  <link rel="stylesheet" href='{% static 'css/base_style.css' %}'></link>
-</head>
+  <head>
+    <title>LMNOP</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base_style.css' %}" type="text/css">
+  </head>
 
-<body>
+  <body>
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col"><h1 id="header-col">LMNOP</h1></div>
+      </div>
+      
+      <div class="row">
+        <div id="venue-list" class="col"><a class="btn btn-outline-primary" href="{% url 'lmn:venue_list' %}" role="button">Venues</a></div>
+        <div id="artist-list" class="col"><a class="btn btn-outline-primary" href="{% url 'lmn:artist_list' %}" role="button">Artists</a></div>
+        <div id="latest-notes" class="col"><a class="btn btn-outline-primary" href="{% url 'lmn:latest_notes' %}" role="button">Notes</a></div>
+      </div>
 
-<h1>LMN</h1>
+      <div class="row">
+          {% if user.is_authenticated %}
+          <span id='welcome_user_msg'>You are logged in, <a href="{% url 'lmn:user_profile' user_pk=user.pk %}">{{ user.username }}</a>.  <a href="{% url 'lmn:logout' %}">Logout</a></span>
+    
+        {% else %}
+    
+          <span id='login_or_sign_up'><a href="{% url 'lmn:login' %}?next={{ request.path }}">Login or sign up</a></span>
+    
+        {% endif %}
+      </div>
+    </div>
 
+    <hr>
 
-<a href="{% url 'lmn:venue_list' %}">Venues</a>
-<a href="{% url 'lmn:artist_list' %}">Artists</a>
-<a href="{% url 'lmn:latest_notes' %}">Notes</a>
+    {% block content %}
+    {% endblock %}
 
-{% if user.is_authenticated %}
-  <span id='welcome_user_msg'>You are logged in, <a href="{% url 'lmn:user_profile' user_pk=user.pk %}">{{ user.username }}</a>.  <a href="{% url 'lmn:logout' %}">Logout</a></span>
-
-{% else %}
-
-  <span id='login_or_sign_up'><a href="{% url 'lmn:login' %}?next={{ request.path }}">Login or sign up</a></span>
-
-{% endif %}
-
-<hr>
-
-{% block content %}
-{% endblock %}
-
-</body>
+  </body>
 </html>

@@ -21,10 +21,10 @@ body {
   padding: 2rem 1rem;
 }
 
-#header-col, #venue-list, #artist-list, #latest-notes {
+#header-col, #venue-list, #artist-list, #latest-notes, #venue-list-header, #venue-search-p, #venue-form {
   text-align: center;
 }
 
-#welcome-2, #welcome-1 {
+#welcome-2, #welcome-1, #venue-list-title, #venue-search-results, #venue-detail-title, #venue-details-displayed {
   text-align: center;
 }

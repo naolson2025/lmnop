@@ -1,40 +1,63 @@
 {% extends 'lmn/base.html' %}
 {% block content %}
 
-<h2>Venue List</h2>
+<div class="row">
+  <div id="venue-list-header" class="col">
+      <h2>Venue List</h2>
+  </div>
+</div>
+
 
 <div>
-<P>Venue Search</P>
+<div class="row">
+  <div id="venue-search-p" class="col">
+      <P>Venue Search</P>
+  </div>
+</div>
+
 
 <!-- The form fields are built from the definition in forms.py -->
-<form action="{% url 'lmn:venue_list' %}">
-  {{ form }}
-  <input type='submit' value='Search'/>
-</form>
+<div class="row">
+  <div id="venue-form" class="col">
+    <form action="{% url 'lmn:venue_list' %}">
+      {{ form }}
+      <input type='submit' value='Search'/>
+    </form>
+    </div>
+  </div>
 </div>
 
+<div class="row">
+  <div id="venue-list-title" class="col">
+    {% if search_term %}
+      <h2 id="venue_list_title">Venues matching '{{ search_term }}'  <a href="{% url 'lmn:venue_list' %}" id='clear_search'>clear</a></h2>
+    {% else %}
+      <h2 id="venue_list_title">All venues</h2>
+    {% endif %}
+  </div>
+</div>
 
-
-{% if search_term %}
-  <h2 id="venue_list_title">Venues matching '{{ search_term }}'  <a href="{% url 'lmn:venue_list' %}" id='clear_search'>clear</a></h2>
-{% else %}
-  <h2 id="venue_list_title">All venues</h2>
-{% endif %}
 
 <div>
 
-{% for venue in venues %}
+<div class="row">
+  <div id="venue-search-results" class="col">
+      {% for venue in venues %}
 
-<div id="venue_{{ venue.pk }}">
-  <P><a href="{% url 'lmn:venue_detail' venue_pk=venue.pk %}">{{ venue.name }}</a>
-  {{ venue.city }}, {{ venue.state }}</p>
-  <P>See artists, notes, and add your own <a href='{% url "lmn:artists_at_venue" venue_pk=venue.pk %}'>{{ venue.name }} notes</a>
-</p>
+      <div id="venue_{{ venue.pk }}">
+        <P><a href="{% url 'lmn:venue_detail' venue_pk=venue.pk %}">{{ venue.name }}</a>
+        {{ venue.city }}, {{ venue.state }}</p>
+        <P>See artists, notes, and add your own <a href='{% url "lmn:artists_at_venue" venue_pk=venue.pk %}'>{{ venue.name }} notes</a>
+      </p>
+      </div>
+      
+      {% empty %}
+        <P>No venues found</p>
+      {% endfor %}
+  </div>
 </div>
 
-{% empty %}
-  <P>No venues found</p>
-{% endfor %}
+
 
 </div>
 

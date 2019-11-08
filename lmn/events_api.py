@@ -9,7 +9,11 @@ response = requests.get(url)
 
 soup = BeautifulSoup(response.text, "html.parser")
 
-one_a_tag = soup.findAll('a')
-link = one_a_tag['href']
-download_url = 'https://first-avenue.com/calendar' + link
-urllib.request.urlretrieve(download_url)
+container = soup.find_all('a')
+                               
+for lines in container:
+    title = lines.title
+    print(title)
+
+    
+    

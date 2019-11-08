@@ -1,14 +1,15 @@
 import requests
+import urllib.request
+import time
+from bs4 import BeautifulSoup
 
-url = 'https://app.ticketmaster.com/discovery/v2/events.json?apikey=8yFkVOfTiN4HSZQNcjNKWhJ1OTlmYWJh'
-params = {'dmaId' : '336', 'classificationName' : 'music'}
-data = requests.get(url, params=params).json()
+url = 'https://first-avenue.com/calendar'
 
-events_data = data['_embedded']['events']
+response = requests.get(url)
 
-for data in events_data:
-    name = data['name']
-    venue_name = data['_embedded']['venues'][0]['name']
-    print(f'Event: {name}')
-    print(f'Venue: {venue_name} \n')
+soup = BeautifulSoup(response.text, "html.parser")
 
+one_a_tag = soup.findAll('a')
+link = one_a_tag['href']
+download_url = 'https://first-avenue.com/calendar' + link
+urllib.request.urlretrieve(download_url)

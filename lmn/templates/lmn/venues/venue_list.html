@@ -45,10 +45,16 @@
       {% for venue in venues %}
 
       <div id="venue_{{ venue.pk }}">
-        <P><a href="{% url 'lmn:venue_detail' venue_pk=venue.pk %}">{{ venue.name }}</a>
-        {{ venue.city }}, {{ venue.state }}</p>
-        <P>See artists, notes, and add your own <a href='{% url "lmn:artists_at_venue" venue_pk=venue.pk %}'>{{ venue.name }} notes</a>
-      </p>
+        <div class="row">
+          <div class="col">
+              <P><a href="{% url 'lmn:venue_detail' venue_pk=venue.pk %}">{{ venue.name }}</a>
+                {{ venue.city }}, {{ venue.state }}</p>
+          </div>
+
+          <div class="col">
+              <P>See artists, notes, and add your own <a href='{% url "lmn:artists_at_venue" venue_pk=venue.pk %}'>{{ venue.name }} notes</a></p>
+          </div>
+        </div>
       </div>
       
       {% empty %}

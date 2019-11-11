@@ -6,6 +6,7 @@ body {
   position: absolute;
   right: 0px;
   padding-right: 10px;
+  color: ivory;
 }
 
 #login_form.tr, #registration_form.tr {
@@ -15,4 +16,35 @@ body {
 
 #login_form.th, #registration_form.th {
   text-align: right;
+}
+
+body {
+  background-color: lightgray;
+}
+
+.jumbotron {
+  background: url('../img/microphone.jpg') 0 0 repeat-x;
+  background-size: cover;
+  padding: 6rem 4rem 2rem 2rem;
+}
+
+#venue-list-header, #artists_at_venue_title, #artist-locations {
+  text-align: center;
+}
+
+#venue-list, #artist-list, #latest-notes, #venue-search-p, #venue-form {
+  text-align: left;
+}
+
+#header-col {
+  font-size: 100px;
+  text-align: left
+}
+
+#welcome-2, #welcome-1, #venue-list-title, #venue-search-results, #venue-detail-title, #venue-details-displayed {
+  text-align: center;
+}
+
+.hr {
+  padding: 0px;
 }

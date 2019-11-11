@@ -2,22 +2,41 @@
 
 {% block content %}
 
+<div class="container">
+  
+  <div class="row">
 
-<h2 id="artists_at_venue_title">Artists that have played at {{ venue.name }}</h2>
+      <div class="col">
+          <h2 id="artists_at_venue_title">Artists that have played at {{ venue.name }}</h2>
+      </div>
 
-{% for show in shows %}
+  </div>
 
-<div class="show" id="show_{{ show.pk }}">
-  <P>{{ show.artist.name}} on {{ show.show_date }}.
-    <a href="{% url 'lmn:notes_for_show' show_pk=show.pk %}">See notes for this show, and add your own</a>
-  </P>
 </div>
 
-{% empty %}
+<div class="container">
+  {% for show in shows %}
 
-  <P id="no_results">We have no records of shows at this venue</p>
+  <div class="row align-items-center" style="background-color: silver; border-radius: 25px; margin-bottom: 5px;">
 
-{% endfor %}
+    <div class="col" style="text-align: center;">
+
+      <div class="show" id="show_{{ show.pk }}">
+        <P style="margin-bottom: 5px; margin-top: 5px;">{{ show.artist.name}} on {{ show.show_date }}.
+          <a href="{% url 'lmn:notes_for_show' show_pk=show.pk %}">See notes for this show, and add your own</a>
+        </P>
+      </div>
+          
+    </div>
+
+  </div>
+
+  {% empty %}    
+    <P id="no_results">We have no records of shows at this venue</p>
+  {% endfor %}
+
+</div>
+
 
 
 

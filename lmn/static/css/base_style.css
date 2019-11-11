@@ -18,14 +18,22 @@ body {
   text-align: right;
 }
 
+body {
+  background-color: lightgray;
+}
+
 .jumbotron {
   background: url('../img/microphone.jpg') 0 0 repeat-x;
   background-size: cover;
   padding: 6rem 4rem 2rem 2rem;
 }
 
-#venue-list, #artist-list, #latest-notes, #venue-list-header, #venue-search-p, #venue-form {
+#venue-list-header, #artists_at_venue_title, #artist-locations {
   text-align: center;
+}
+
+#venue-list, #artist-list, #latest-notes, #venue-search-p, #venue-form {
+  text-align: left;
 }
 
 #header-col {

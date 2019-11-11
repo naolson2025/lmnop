@@ -1,31 +1,53 @@
 {% extends 'lmn/base.html' %}
 {% block content %}
 
-<h2>Artist List</h2>
 
-<P>Artist Search</p>
-  <form action="{% url 'lmn:artist_list' %}">
-    {{ form }}
-    <input type='submit' value='Search'>
-  </form>
+<div class="row align-items-center" style="margin: 10px;">
+
+  <div class="col-2">
+    <h3>Artist Search</h3>
+  </div>
+
+  <div class="col-4">
+    <form action="{% url 'lmn:artist_list' %}">
+        {{ form }}
+        <input type='submit' value='Search'>
+    </form>
+  </div>
+
+</div>
 
 
-{% if search_term %}
-  <h2 id='artist_list_title'>Artists matching '{{ search_term }}' <a href="{% url 'lmn:artist_list' %}" id='clear_search'>(clear)</a></h2>
-{% else %}
-  <h2 id='artist_list_title'>All artists</h2>
-{% endif %}
+
+<div class="row">
+
+  <div class="col" style="text-align: center;">
+    {% if search_term %}
+      <h2 id='artist_list_title'>Artists matching '{{ search_term }}' <a href="{% url 'lmn:artist_list' %}" id='clear_search'>(clear)</a></h2>
+    {% else %}
+      <h2 id='artist_list_title'>All artists</h2>
+    {% endif %}
+  </div>
+
+</div>
+
 
 
 {% for artist in artists %}
+<div class="row">
 
-<div class="artist" id="artist_{{ artist.pk }}">
-<P><a href="{% url 'lmn:artist_detail' artist_pk=artist.pk %}">{{ artist.name }}</a></p>
-  <p>See venues played, notes, and add your own <a href="{% url 'lmn:venues_for_artist' artist_pk=artist.pk %}">{{ artist.name }} notes</a>
-<div>
+  <div class="col" style="text-align: center;">
+    <div class="artist" id="artist_{{ artist.pk }}">
+      <P><a href="{% url 'lmn:artist_detail' artist_pk=artist.pk %}">{{ artist.name }}</a></p>
+      <p>See venues played, notes, and add your own <a href="{% url 'lmn:venues_for_artist' artist_pk=artist.pk %}">{{ artist.name }} notes</a>
+    </div>
+  </div>
 
+</div>
 {% empty %}
-<P>No artists found</P>
+  <P>No artists found</P>
 {% endfor %}
+
+
 
 {% endblock %}

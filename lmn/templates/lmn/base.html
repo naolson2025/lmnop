@@ -14,7 +14,7 @@
         <div class="col"><h1 id="header-col">LMNOP</h1></div>
       </div>
       
-      <div class="row">
+      <div class="row align-items-center">
         <div id="venue-list" class="col-1"><a class="btn btn-outline-secondary" href="{% url 'lmn:venue_list' %}" role="button">Venues</a></div>
         <div id="artist-list" class="col-1"><a class="btn btn-outline-secondary" href="{% url 'lmn:artist_list' %}" role="button">Artists</a></div>
         <div id="latest-notes" class="col-1"><a class="btn btn-outline-secondary" href="{% url 'lmn:latest_notes' %}" role="button">Notes</a></div>
@@ -32,8 +32,11 @@
       </div>
     </div>
 
+
     {% block content %}
     {% endblock %}
+
+
 
   </body>
 </html>

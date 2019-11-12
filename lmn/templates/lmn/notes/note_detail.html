@@ -20,4 +20,11 @@
 </div>
 
 
+<form action="{% url 'delete_note' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ note.pk }}">
+    <button type=submit class="delete">Delete</button>
+</form>
+
+
 {% endblock %}

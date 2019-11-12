@@ -7,4 +7,21 @@
 <p id="note_title"><b>{{ note.title}}</b></p>
 <p id="note_text">{{ note.text }}</b>
 
+<h3>Photo</h3>
+    {% if note.photo %}
+        <img src="{{ note.photo.url }}">
+    {% else %}
+        <P>No photo uploaded</p>
+
+
+
+{% endif %}
+
+<form action="{% url 'delete_note' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ note.pk }}">
+    <button type=submit class="delete">Delete</button>
+</form>
+
 {% endblock %}
+

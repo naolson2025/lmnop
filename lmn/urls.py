@@ -1,4 +1,6 @@
 from django.urls import path
+
+from lmn.views import delete_own_note
 from . import views, views_artists, views_venues, views_notes, views_users
 
 from django.contrib.auth import views as auth_views
@@ -20,6 +22,9 @@ urlpatterns = [
     path('notes/detail/<int:note_pk>/', views_notes.note_detail, name='note_detail'),
     path('notes/for_show/<int:show_pk>/', views_notes.notes_for_show, name='notes_for_show'),
     path('notes/add/<int:show_pk>/', views_notes.new_note, name='new_note'),
+
+    path('delete/note/',views.delete_own_note, name='delete_own_note'),
+
 
     # Artist related
     path('artists/list/', views_artists.artist_list, name='artist_list'),

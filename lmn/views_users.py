@@ -1,5 +1,7 @@
-from django.shortcuts import render, redirect
 
+from django.shortcuts import render, redirect, get_object_or_404
+
+from lmnop_project import settings
 from .models import Venue, Artist, Note, Show
 from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm
 
@@ -44,3 +46,12 @@ def register(request):
     else:
         form = UserRegistrationForm()
         return render(request, 'registration/register.html', { 'form' : form } )
+
+
+@login_required
+def delete_own_note(request, message_id):
+    note = get_object_or_404(Note.get_model(), pk=message_id,
+            site__pk=settings.SITE_ID)
+    if note.user == request.user:
+        note.is_removed = True
+        note.save()

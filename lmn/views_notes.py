@@ -1,3 +1,4 @@
+from django.http import HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Venue, Artist, Note, Show
@@ -51,3 +52,14 @@ def notes_for_show(request, show_pk):   # pk = show pk
 def note_detail(request, note_pk):
     note = get_object_or_404(Note, pk=note_pk)
     return render(request, 'lmn/notes/note_detail.html' , {'note' : note })
+
+# Delete own notes
+def delete_own_notes(request):
+    pk = request.POST.get('pk')
+    notes = get_object_or_404(Note, pk=pk)
+    if notes.user == request.user:
+        Note.delete()
+        return redirect('note_list')
+    else:
+        return HttpResponseForbidden()
+

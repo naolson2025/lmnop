@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from .models import Artist, Venue, Show
 
 # Web scrapping from bandsintown website
-def getEvent():
+def loadURL():
     try:
         # Bandsintown url
         url = 'https://www.bandsintown.com/en?came_from=257&sort_by_filter=Number+of+RSVPs'
@@ -24,7 +24,7 @@ def getArtistData():
         # Create artist list
         artist_list = []
 
-        soup = getEvent()
+        soup = loadURL()
 
         # Get artists data and add them to the artist_list
         artists = soup.find_all('h2', {'class' : 'event-5daafce9'})
@@ -44,7 +44,7 @@ def getVenueData():
         # Create venue list
         venue_list = []
 
-        soup = getEvent()
+        soup = loadURL()
 
         # Get venues data and add them to the venue_list
         venue_tag = soup.find_all('div', {'class' : 'event-6891d84c'})
@@ -71,7 +71,7 @@ def getShowData():
         # Create show list
         show_list = []
 
-        soup = getEvent()
+        soup = loadURL()
 
         # Get date, artist, and venue data and add them to the show_list
         date_tag = soup.find_all('div', {'class' : 'event-b58f7990'})

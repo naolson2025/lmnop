@@ -48,3 +48,8 @@ body {
 .hr {
   padding: 0px;
 }
+
+.delete {
+    background-color: crimson;
+    border-color: darkred;
+}

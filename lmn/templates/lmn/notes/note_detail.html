@@ -24,7 +24,13 @@
     {% csrf_token %}
     <input type="hidden" name="pk" value="{{ note.pk }}">
     <button type=submit class="delete">Delete</button>
+
 </form>
 
-
 {% endblock %}
+{% if request.user == note.user %}
+    <a href="/link/to/view/">Delete</a>
+
+
+
+{% endif %}

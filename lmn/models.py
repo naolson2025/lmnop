@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from cloudinary.models import CloudinaryField
 
 # Every model gets a primary key field by default.
 
@@ -22,6 +23,10 @@ class Artist(models.Model):
 
     def __str__(self):
         return "Artist: " + self.name
+
+
+class Photo(models.Model):
+    image = CloudinaryField('image')
 
 
 ''' A venue, that hosts shows. '''
@@ -51,6 +56,7 @@ class Note(models.Model):
     title = models.CharField(max_length=200, blank=False)
     text = models.TextField(max_length=1000, blank=False)
     posted_date = models.DateTimeField(blank=False)
+    photo = models.ImageField(upload_to='user_images/', blank=True, null=True)
 
     def publish(self):
         posted_date = datetime.datetime.today()

@@ -4,6 +4,8 @@ from .models import Note
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ValidationError
+from django.forms import ModelForm
+from .models import Photo
 
 
 class VenueSearchForm(forms.Form):
@@ -18,6 +20,18 @@ class NewNoteForm(forms.ModelForm):
     class Meta:
         model = Note
         fields = ('title', 'text')
+
+
+class CloudinaryJsField(object):
+    pass
+
+#define a PhotoDirectForm class that has a form field named image of the CloudinaryJsFileField class
+class PhotoDirectForm(ModelForm):
+    class Meta:
+        model = Photo
+
+    image = CloudinaryJsField()
+
 
 
 class UserRegistrationForm(UserCreationForm):

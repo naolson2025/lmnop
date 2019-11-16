@@ -1,7 +1,7 @@
-from load_events_url import load_URL
-from venues_data import get_venue_data
-from artists_data import get_artist_data 
-from .models import Show
+from .load_events_url import load_URL
+from .venues_data import get_venue_data
+from .artists_data import get_artist_data 
+from ..models import Show
 from django.http import HttpResponse
 
 def get_show_data():
@@ -14,9 +14,12 @@ def get_show_data():
             show_date = date.text
             artist = get_artist_data()
             venue = get_venue_data()
+            # todo check for errors here 
+            print(show_date, artist, venue)
             Show(show_date=show_date, artist=artist, venue=venue).save()
 
-        return HttpResponse('worked')
+        # Return a regular Python object, something to represent success, something else to represent failure
+        # return HttpResponse('worked')
 
     except Exception as e:
         print(e)

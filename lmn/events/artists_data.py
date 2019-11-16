@@ -1,5 +1,5 @@
-from load_events_url import load_URL
-from .models import Artist
+from .load_events_url import load_URL
+from ..models import Artist
 from django.http import HttpResponse
 
 # Get a list of artists
@@ -13,7 +13,9 @@ def get_artist_data():
             name = artist.text
             Artist(name=name).save()
         
-        return HttpResponse('worked')
+        # return HttpResponse('worked') 
+        # This isn't web app code, return a regular python object. 
+        # Decide how this function will report success and failure to the caller.
 
     except Exception as e:
         print(e)

@@ -11,6 +11,9 @@ Text truncated to 200 characters. -->
 
   <div class="col" style="text-align: center;">
       <h2 id='username_notes'>{{ user.username }}'s notes</h2>
+      <p>Favorite Artist: {{ form.fav_artist }}</p>
+      <p>Favorite Venue: {{ form.fav_venue }}</p>
+      <a href="{% url 'lmn:my_user_profile' %}">Edit Profile</a>
   </div>
 
 </div>
@@ -38,6 +41,5 @@ Text truncated to 200 characters. -->
 {% empty %}
   <p id='no_records'>No notes.</p>
 {% endfor %}
-
 
 {% endblock %}

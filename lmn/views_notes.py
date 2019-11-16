@@ -59,7 +59,7 @@ def delete_own_note(request, note_pk):
     instance = get_object_or_404(Note, pk=note_pk)
     print(request.user, instance.user)
     if request.user == instance.user:
-        instance.delete()  # or save edits
+        instance.delete()  # or saves edits
         # messages.success(request, "Successfully Deleted")
         return redirect("lmn:latest_notes")
     else:

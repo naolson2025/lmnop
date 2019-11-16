@@ -25,10 +25,6 @@ class Artist(models.Model):
         return "Artist: " + self.name
 
 
-class Photo(models.Model):
-    image = CloudinaryField('image')
-
-
 ''' A venue, that hosts shows. '''
 class Venue(models.Model):
     name = models.CharField(max_length=200, blank=False, unique=True)

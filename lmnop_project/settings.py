@@ -143,7 +143,7 @@ LOGOUT_REDIRECT_URL = 'lmn:homepage'
 
 
 # Media URL, for user-created media - becomes part of URL when images are displayed
-MEDIA_URL = '/media/'
+#MEDIA_URL = '/media/'
 
 # Where in the file system to save user-uploaded files
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

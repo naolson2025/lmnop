@@ -14,7 +14,7 @@ from django.utils import timezone
 
 def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
-    userprofile = UserProfile.objects.filter(user=user_pk).reverse()
+    userprofile = UserProfile.objects.filter(user=user.pk)
     usernotes = Note.objects.filter(user=user.pk).order_by('posted_date').reverse()
     return render(request, 'lmn/users/user_profile.html', {'user' : user , 'notes' : usernotes, 'profile' : userprofile })
 

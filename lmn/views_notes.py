@@ -1,3 +1,4 @@
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Venue, Artist, Note, Show
@@ -51,3 +52,18 @@ def notes_for_show(request, show_pk):   # pk = show pk
 def note_detail(request, note_pk):
     note = get_object_or_404(Note, pk=note_pk)
     return render(request, 'lmn/notes/note_detail.html' , {'note' : note })
+
+
+
+@login_required
+def delete_own_note(request, note_pk):
+    print('note pk is ', note_pk)
+    instance = get_object_or_404(Note, pk=note_pk)
+    print(request.user, instance.user)
+    if request.user == instance.user:
+        instance.delete()  # or save edits
+        # messages.success(request, "Successfully Deleted")
+        return redirect("lmn:latest_notes")
+    else:
+        raise PermissionDenied("Can't delete someone else's note!")  # import it from django.core.exceptions
+        # return redirect("lmn:latest_notes")

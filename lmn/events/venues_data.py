@@ -1,5 +1,5 @@
-from load_events_url import load_URL
-from .models import Venue
+from .load_events_url import load_URL
+from ..models import Venue
 from django.http import HttpResponse
 
 def get_venue_data():

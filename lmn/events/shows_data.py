@@ -1,7 +1,7 @@
-from load_events_url import load_URL
-from venues_data import get_venue_data
-from artists_data import get_artist_data 
-from .models import Show
+from .load_events_url import load_URL
+from .venues_data import get_venue_data
+from .artists_data import get_artist_data 
+from ..models import Show
 from django.http import HttpResponse
 
 def get_show_data():

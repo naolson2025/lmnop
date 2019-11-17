@@ -3,7 +3,6 @@ from django.http import HttpResponse
 
 def gather_event_data(request):
 
-    
     # todo return a HTTP 200 response for success, an error response for errors
     if  == 200:
         shows_data.get_show_data()
@@ -11,3 +10,4 @@ def gather_event_data(request):
         artists_data.get_artist_data()
     else:
         return HttpResponse('ok')  
+

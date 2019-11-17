@@ -10,9 +10,8 @@ def load_URL():
 
         # Parsing HTML using BeautifulSoup
         response = requests.get(url)
-        get_soup = BeautifulSoup(response.text, "html.parser")
-
-        return get_soup
+        
+        return response
     except Exception as e:
         print(e)
 

@@ -7,16 +7,21 @@ def get_artist_data():
     try:
         artist_list = []
 
-        soup = load_URL()
+        response = load_URL()
 
-        # Get artists data and add them to the artist_list
-        artists = soup.find_all('h2', {'class' : 'event-5daafce9'})
-        for artist in artists:
-            name = artist.text
-            artist_data.append(name)
-            Artist(name=name).save()
+        if response is not None:
+            soup = BeautifulSoup(response.text, "html.parser")
+            artists = soup.find_all('h2', {'class' : 'event-5daafce9'})
+
+            # Get artists data and add them to the artist_list
+            for artist in artists:
+                name = artist.text
+                artist_data.append(name)
+                Artist(name=name).save()
         
-        return artist_list
+            return artist_list
+        else:
+            raise Exception('Error retrieving contents')
 
     except Exception as e:
         print(e)

@@ -10,14 +10,21 @@ Text truncated to 200 characters. -->
 <div class="row">
 
   <div class="col" style="text-align: center;">
-      <h2 id='username_notes'>{{ user.username }}'s notes</h2>
-      <p>Favorite Artist: {{ form.fav_artist }}</p>
-      <p>Favorite Venue: {{ form.fav_venue }}</p>
+      <h2 id='username_notes'>{{ user.username }}'s profile</h2>
+      <p>Favorite Artist: {{ profile.fav_artist }}</p>
+      <p>Favorite Venue: {{ profile.fav_venue }}</p>
       <a href="{% url 'lmn:my_user_profile' %}">Edit Profile</a>
   </div>
 
 </div>
 
+<div class="row">
+
+  <div class="col" style="text-align: center;">
+      <h2 id='username_notes'>{{ user.username }}'s notes</h2>
+  </div>
+
+</div>
 
 
 {% for note in notes %}

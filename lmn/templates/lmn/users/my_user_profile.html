@@ -1,0 +1,17 @@
+{% extends 'lmn/base.html' %}
+{% block content %}
+
+<div class="row">
+
+    <div class="col" style="text-align: center;">
+        <h2 id="username_notes">Edit {{ user.username }}'s profile</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+    </div>
+    
+  </div>
+
+{% endblock %}

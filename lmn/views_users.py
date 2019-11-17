@@ -14,7 +14,7 @@ from django.utils import timezone
 
 def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
-    userprofile = UserProfile.objects.filter(user=user.pk).reverse()
+    userprofile = UserProfile.objects.filter(user=user_pk).reverse()
     usernotes = Note.objects.filter(user=user.pk).order_by('posted_date').reverse()
     return render(request, 'lmn/users/user_profile.html', {'user' : user , 'notes' : usernotes, 'profile' : userprofile })
 
@@ -31,7 +31,7 @@ def my_user_profile(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
-            return redirect('lmn:user_profile', profile_pk=profile.pk)
+            return redirect('lmn:user_profile', user_pk=request.user.pk)
     else:
         form = ProfileEditForm()
 

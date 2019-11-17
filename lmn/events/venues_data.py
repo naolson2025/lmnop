@@ -4,6 +4,8 @@ from django.http import HttpResponse
 
 def get_venue_data():
     try:
+        venue_list = []
+
         soup = load_URL()
 
         # Get venues data and add them to the venue_list
@@ -15,9 +17,10 @@ def get_venue_data():
             for city_state in city_state_tag:
                 city = city_state.text
                 state = city_state.text
+                venue_list.append(name, city, state)
                 Venue(name=name, city=city, state=state).save()
         
-        return HttpResponse('worked')
+        return venue_list
 
     except Exception as e:
         print(e)

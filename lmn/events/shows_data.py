@@ -6,6 +6,8 @@ from django.http import HttpResponse
 
 def get_show_data():
     try:
+        show_list = []
+
         soup = load_URL()
 
         # Get date, artist, and venue data and add them to the show_list
@@ -14,9 +16,10 @@ def get_show_data():
             show_date = date.text
             artist = get_artist_data()
             venue = get_venue_data()
+            show_list.append(show_date, artist, venue)
             Show(show_date=show_date, artist=artist, venue=venue).save()
 
-        return HttpResponse('worked')
+        return show_list
 
     except Exception as e:
         print(e)

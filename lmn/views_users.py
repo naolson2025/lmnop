@@ -34,8 +34,9 @@ def my_user_profile(request):
             return redirect('lmn:user_profile', profile_pk=profile.pk)
     else:
         form = ProfileEditForm()
+        return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
 
-    return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
+    
 
 
 def register(request):

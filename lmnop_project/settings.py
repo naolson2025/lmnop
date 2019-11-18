@@ -97,8 +97,8 @@ DATABASES = {
     # }
 }
 
-# if not os.getenv('GAE_INSTANCE'):
-#     DATABASES['default']['HOST'] = '127.0.0.1'
+if not os.getenv('GAE_INSTANCE'):
+    DATABASES['default']['HOST'] = '127.0.0.1'
 
 if os.getenv('GAE_INSTANCE'):
     ALLOWED_HOSTS = ['lmnop-nick-vina-khan-james.appspot.com']
@@ -142,9 +142,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'www', 'static')
 
 # Where to send user after successful login if no other page is provided.
 # Should provide the user object.
 LOGIN_REDIRECT_URL = 'lmn:my_user_profile'
 LOGOUT_REDIRECT_URL = 'lmn:homepage'
+
+GS_STATIC_FILE_BUCKET = 'lmnop-nick-vina-khan-james.appspot.com'
+
+#STATIC_URL = f'https://storage.cloud.google.com/{GS_STATIC_FILE_BUCKET}/static'

@@ -5,3 +5,4 @@ env
 venv
 lmnop.sqlite
 .idea
+app.yaml

@@ -23,7 +23,8 @@ body {
 }
 
 .jumbotron {
-  background: url('../img/microphone.jpg') 0 0 repeat-x;
+  background: lightsteelblue;
+  /* background: url('../img/microphone.jpg') 0 0 repeat-x; */
   background-size: cover;
   padding: 6rem 4rem 2rem 2rem;
 }

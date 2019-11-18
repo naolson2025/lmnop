@@ -23,7 +23,7 @@ Text truncated to 200 characters. -->
     {% if user.is_authenticated %}
       {% comment %} <button method='POST' href="{% url 'lmn:my_user_profile' user_pk=user.pk %}">Edit</button> {% endcomment %}
       {% comment %} <button href="{% url 'lmn:my_user_profile' %}">Edit</button> {% endcomment %}
-      <a class="btn btn-outline-primary" href="{% url 'lmn:my_user_profile' %}" role="button">Edit</a>
+      <a class="btn btn-outline-primary" href="{% url 'lmn:my_user_profile' user_pk=user.pk %}" role="button">Edit</a>
     {% endif %}
     
   </div>

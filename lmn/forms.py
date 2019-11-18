@@ -82,4 +82,5 @@ class UserRegistrationForm(UserCreationForm):
 class UserProfileEditForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['fav_artist', 'fav_venue']
+        #fields = ['fav_artist', 'fav_venue']
+        fields = ('fav_artist', 'fav_venue')

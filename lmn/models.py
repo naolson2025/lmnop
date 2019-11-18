@@ -58,3 +58,11 @@ class Note(models.Model):
 
     def __str__(self):
         return 'Note for user ID {} for show ID {} with title {} text {} posted on {}'.format(self.user, self.show, self.title, self.text, self.posted_date)
+
+class UserProfile(models.Model):
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
+    fav_artist = models.CharField(max_length=100, blank=False)
+    fav_venue = models.CharField(max_length=100, blank=False)
+
+    def __str__(self):
+        return "{}'s profile".format(self.user)

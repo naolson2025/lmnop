@@ -3,6 +3,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 # Web scrapping from bandsintown website
+# https://www.dataquest.io/blog/web-scraping-beautifulsoup/
 def load_URL():
     try:
         # Bandsintown url
@@ -10,9 +11,7 @@ def load_URL():
 
         # Parsing HTML using BeautifulSoup
         response = requests.get(url)
-        get_soup = BeautifulSoup(response.text, "html.parser")
-
-        return get_soup
+        
+        return response
     except Exception as e:
         print(e)
-

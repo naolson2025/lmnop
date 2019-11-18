@@ -13,16 +13,26 @@ from django.utils import timezone
 
 def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
+    userprofile = UserProfile.objects.filter(user=user.pk)
     usernotes = Note.objects.filter(user=user.pk).order_by('posted_date').reverse()
-    return render(request, 'lmn/users/user_profile.html', {'user' : user , 'notes' : usernotes })
-
+    return render(request, 'lmn/users/user_profile.html', {'user' : user , 'notes' : usernotes, 'profile' : userprofile })
 
 
 @login_required
 def my_user_profile(request):
-    # TODO - editable version for logged-in user to edit own profile
-    return redirect('lmn:user_profile', user_pk=request.user.pk)
+    
+    if request.method == 'POST':
+        
+        form = ProfileEditForm(request.POST)
 
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('lmn:user_profile', user_pk=request.user.pk)
+    else:
+        form = ProfileEditForm()
+        return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
 
 
 def register(request):

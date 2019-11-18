@@ -4,10 +4,11 @@ from django.http import HttpResponse
 def gather_event_data(request):
 
     try:
-        if shows_data.get_show_data() and 
-            venues_data.get_venue_data() and
-            artists_data.get_artist_data() == 200: 
-            
+        shows_ = shows_data.get_show_data()
+        venues_ = venues_data.get_venue_data()
+        artists_ = artists_data.get_artist_data()
+
+        if shows_ == 200 and venues_ == 200 and artists_ == 200: 
             return HttpResponse('ok')
         else:
             return HttpResponse('Error occured')

@@ -24,6 +24,7 @@ def my_user_profile(request):
     if request.method == 'POST':
 
         form = UserProfileEditForm(request.POST)
+        
 
         if form.is_valid():
             profile = form.save(commit=False)
@@ -33,6 +34,10 @@ def my_user_profile(request):
         else:
             form = UserProfileEditForm()
             return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
+
+    else:
+        form = UserProfileEditForm()
+        return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
 
 
 

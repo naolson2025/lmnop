@@ -1,5 +1,5 @@
-from load_events_url import load_URL
-from .models import Artist
+from .load_events_url import load_URL
+from ..models import Artist
 from django.http import HttpResponse
 
 # Get a list of artists
@@ -19,9 +19,10 @@ def get_artist_data():
                 artist_data.append(name)
                 Artist(name=name).save()
         
+
             return artist_list
         else:
             raise Exception('Error retrieving contents')
-
+            
     except Exception as e:
         print(e)

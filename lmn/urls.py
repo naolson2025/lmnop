@@ -20,6 +20,7 @@ urlpatterns = [
     path('notes/detail/<int:note_pk>/', views_notes.note_detail, name='note_detail'),
     path('notes/for_show/<int:show_pk>/', views_notes.notes_for_show, name='notes_for_show'),
     path('notes/add/<int:show_pk>/', views_notes.new_note, name='new_note'),
+    path('/notes/delete/<int:note_pk>', views_notes.delete_own_note, name='delete_note'),
 
     # Artist related
     path('artists/list/', views_artists.artist_list, name='artist_list'),
@@ -40,6 +41,5 @@ urlpatterns = [
     path('gather/artists/', views_get_data.gather_event_data, name='artists_data'),
     path('gather/venues/', views_get_data.gather_event_data, name='venues_data')
     
-
 
 ]

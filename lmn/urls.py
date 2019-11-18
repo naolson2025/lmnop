@@ -29,14 +29,15 @@ urlpatterns = [
 
     # User related
     path('user/profile/<int:user_pk>/', views_users.user_profile, name='user_profile'),
-    path('user/profile/', views_users.my_user_profile, name='my_user_profile'),
+    path('user/profile/edit/', views_users.my_user_profile, name='my_user_profile'),
 
     # Account related
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
     path('register/', views_users.register, name='register'),
 
-    #  Gathering show data TODO change URL, name as desired
-    path('gather/shows/', views_get_data.gather_event_data, name='gather_show_data'),
-
+    # Gathering events data
+    path('gather/shows/', views_get_data.gather_event_data, name='shows_data'),
+    path('gather/artists/', views_get_data.gather_event_data, name='artists_data'),
+    path('gather/venues/', views_get_data.gather_event_data, name='venues_data')
 ]

@@ -78,3 +78,8 @@ class UserRegistrationForm(UserCreationForm):
             user.save()
 
         return user
+
+class UserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['fav_artist', 'fav_venue']

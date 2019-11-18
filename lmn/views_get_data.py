@@ -5,8 +5,8 @@ def gather_event_data(request):
 
     try:
         if shows_data.get_show_data() and 
-            venues_data.get_venue_data() and 
-            artists_data.get_artist_data() is not None:
+            venues_data.get_venue_data() and
+            artists_data.get_artist_data() == 200: 
             
             return HttpResponse('ok')
         else:

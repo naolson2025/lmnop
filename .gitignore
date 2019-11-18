@@ -4,3 +4,4 @@ env
 .vscode
 venv
 lmnop.sqlite
+.idea

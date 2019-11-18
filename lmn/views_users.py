@@ -1,14 +1,13 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 
-from .models import Venue, Artist, Note, Show, UserProfile
-from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm, ProfileEditForm
+from .models import Venue, Artist, Note, Show
+from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
 from django.utils import timezone
-
 
 
 
@@ -21,10 +20,9 @@ def user_profile(request, user_pk):
 
 @login_required
 def my_user_profile(request):
-    # TODO - editable version for logged-in user to edit own profile
-
+    
     if request.method == 'POST':
-
+        
         form = ProfileEditForm(request.POST)
 
         if form.is_valid():
@@ -35,8 +33,6 @@ def my_user_profile(request):
     else:
         form = ProfileEditForm()
         return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
-
-    
 
 
 def register(request):

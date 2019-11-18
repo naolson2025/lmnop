@@ -15,11 +15,11 @@ def get_artist_data():
 
             # Get artists data and add them to the artist_list
             for artist in artists:
-                name = artist.text
-                artist_data.append(name)
-                Artist(name=name).save()
+                if artist not in artist_list:
+                    name = artist.text
+                    artist_data.append(name)
+                    Artist(name=name).save()
         
-
             return artist_list
         else:
             raise Exception('Error retrieving contents')

@@ -60,7 +60,7 @@ class Note(models.Model):
         return 'Note for user ID {} for show ID {} with title {} text {} posted on {}'.format(self.user, self.show, self.title, self.text, self.posted_date)
 
 class UserProfile(models.Model):
-    user = models.ForeignKey('auth.User', blank=False, on_delete=models.CASCADE)
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     fav_artist = models.CharField(max_length=200, blank=False)
     fav_venue = models.CharField(max_length=200, blank=False)
 

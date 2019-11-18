@@ -11,8 +11,8 @@ Text truncated to 200 characters. -->
 
   <div class="col" style="text-align: center;">
       <h2 id='username_notes'>{{ user.username }}'s profile</h2>
-      <p>Favorite Artist: {{ user.UserProfile.fav_artist }}</p>
-      <p>Favorite Venue: {{ user.UserProfile.fav_venue }}</p>
+      <p>Favorite Artist: {{ profile.user.fav_artist }}</p>
+      <p>Favorite Venue: {{ profile.user.fav_venue }}</p>
       <a href="{% url 'lmn:my_user_profile' %}">Edit Profile</a>
   </div>
 

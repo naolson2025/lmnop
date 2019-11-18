@@ -35,4 +35,9 @@ urlpatterns = [
     path('accounts/logout/', auth_views.LogoutView.as_view(template_name='registration/logout.html'), name='logout'),
     path('register/', views_users.register, name='register'),
 
+    # Gathering events data
+    path('gather/shows/', views_get_data.gather_event_data, name='shows_data'),
+    path('gather/artists/', views_get_data.gather_event_data, name='artists_data'),
+    path('gather/venues/', views_get_data.gather_event_data, name='venues_data'),
+
 ]

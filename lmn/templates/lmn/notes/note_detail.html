@@ -1,16 +1,37 @@
 {% extends 'lmn/base.html' %}
 {% block content %}
 
+
 <head>
     <link rel="base_style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 
 
-<h2 id="note_page_title">{{ note.show.artist.name }} at {{ note.show.venue.name }} by <a href="{% url 'lmn:user_profile' user_pk=note.user.pk %}">{{ user.username }}</a></h2>
 
-<p id="note_title"><b>{{ note.title}}</b></p>
-<p id="note_text">{{ note.text }}</b>
+    <div class="col" style="text-align: center;">
+        <h2 id="note_page_title">{{ note.show.artist.name }} at {{ note.show.venue.name }} by <a href="{% url 'lmn:user_profile' user_pk=note.user.pk %}">{{ user.username }}</a></h2>
+    </div>
+
+</div>
+
+
+<div class="row">
+
+    <div class="col" style="text-align: center;">
+        <p id="note_title"><b>{{ note.title}}</b></p>
+        <p id="note_text">{{ note.text }}</b>
+    </div>
+
+</div>
+
+
+<form action="{% url 'lmn:delete_note' note_pk=note.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="pk" value="{{ note.pk }}">
+    <button type=submit class="delete">Delete</button>
+
+</form>
 
 <body>
     <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" class="fa fa-facebook"></a>
@@ -20,3 +41,9 @@
     
 
 {% endblock %}
+{% if request.user == note.user %}
+    <a href="/link/to/view/">Delete</a>
+
+
+
+{% endif %}

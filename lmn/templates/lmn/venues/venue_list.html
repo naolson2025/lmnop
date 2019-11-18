@@ -1,41 +1,77 @@
 {% extends 'lmn/base.html' %}
 {% block content %}
 
-<h2>Venue List</h2>
+<!-- <div class="row">
+  <div id="venue-list-header" class="col">
+      <h2>Venue List</h2>
+  </div>
+</div> -->
 
-<div>
-<P>Venue Search</P>
 
-<!-- The form fields are built from the definition in forms.py -->
-<form action="{% url 'lmn:venue_list' %}">
-  {{ form }}
-  <input type='submit' value='Search'/>
-</form>
+<div class="container" style="margin: 0%;">
+
+  <div class="row align-items-center">
+
+    <div id="venue-search-p" class="col-3">
+        <h3>Venue Search</h3>
+    </div>
+  
+    <!-- The form fields are built from the definition in forms.py -->
+    <div id="venue-form" class="col-4">
+      <form action="{% url 'lmn:venue_list' %}">
+        {{ form }}
+        <input type='submit' value='Search'/>
+      </form>
+    </div>
+
+  </div>
+  
 </div>
 
 
+<div class="container">
 
-{% if search_term %}
-  <h2 id="venue_list_title">Venues matching '{{ search_term }}'  <a href="{% url 'lmn:venue_list' %}" id='clear_search'>clear</a></h2>
-{% else %}
-  <h2 id="venue_list_title">All venues</h2>
-{% endif %}
+  <div class="row">
 
-<div>
+    <div id="venue-list-title" class="col">
+      {% if search_term %}
+        <h1 id="venue_list_title">Venues matching '{{ search_term }}'  <a href="{% url 'lmn:venue_list' %}" id='clear_search'>clear</a></h1>
+      {% else %}
+        <h1 id="venue_list_title">All Venues</h1>
+      {% endif %}
+    </div>
 
-{% for venue in venues %}
+  </div>
+  
+  <div class="row">
 
-<div id="venue_{{ venue.pk }}">
-  <P><a href="{% url 'lmn:venue_detail' venue_pk=venue.pk %}">{{ venue.name }}</a>
-  {{ venue.city }}, {{ venue.state }}</p>
-  <P>See artists, notes, and add your own <a href='{% url "lmn:artists_at_venue" venue_pk=venue.pk %}'>{{ venue.name }} notes</a>
-</p>
+    <div id="venue-search-results" class="col">
+        {% for venue in venues %}
+        <div id="venue_{{ venue.pk }}">
+
+          <div class="row align-items-center" style="background-color: silver; border-radius: 25px; margin-bottom: 5px;">
+
+            <div id="venue-name" class="col">
+                <P style="margin-top: 5px; margin-bottom: 5px;"><a href="{% url 'lmn:venue_detail' venue_pk=venue.pk %}">{{ venue.name }}</a>
+                  {{ venue.city }}, {{ venue.state }}</p>
+            </div>
+  
+            <div id="venue-notes" class="col" style="text-align: left;">
+                <P style="margin-top: 5px; margin-bottom: 5px;">See artists, notes, and add your own <a href='{% url "lmn:artists_at_venue" venue_pk=venue.pk %}'>{{ venue.name }} notes</a></p>
+            </div>
+
+          </div>
+
+        </div>
+        
+        {% empty %}
+          <P>No venues found</p>
+        {% endfor %}
+    </div>
+
+  </div>
+
 </div>
 
-{% empty %}
-  <P>No venues found</p>
-{% endfor %}
-
-</div>
 
 {% endblock %}

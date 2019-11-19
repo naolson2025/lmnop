@@ -2,12 +2,9 @@
 {% block content %}
 
 
-<head>
-    <link rel="base_style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
 
 
-
+<div>
 
     <div class="col" style="text-align: center;">
         <h2 id="note_page_title">{{ note.show.artist.name }} at {{ note.show.venue.name }} by <a href="{% url 'lmn:user_profile' user_pk=note.user.pk %}">{{ user.username }}</a></h2>

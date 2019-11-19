@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from .models import Venue, Artist, Note, Show
-from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm, ProfileEditForm
+from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm, UserProfileEditForm
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -23,7 +23,7 @@ def my_user_profile(request):
 
     if request.method == 'POST':
 
-        form = ProfileEditForm(request.POST)
+        form = UserProfileEditForm(request.POST)
 
         if form.is_valid():
             profile = form.save(commit=False)
@@ -31,7 +31,7 @@ def my_user_profile(request):
             profile.save()
             return redirect('lmn:user_profile', user_pk=request.user.pk)
         else:
-            form = ProfileEditForm()
+            form = UserProfileEditForm()
             return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
 
 

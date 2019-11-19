@@ -5,7 +5,8 @@
 
     <div class="col" style="text-align: center;">
         <h2 id="username_notes">Edit {{ user.username }}'s profile</h2>
-        <form action="." method="POST" enctype="multipart/form-data">
+        {% comment %} <form action="." method="POST" enctype="multipart/form-data"> {% endcomment %}
+        <form action="{% url 'lmn:my_user_profile' user_pk=user.pk %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Save</button>

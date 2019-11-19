@@ -8,14 +8,33 @@ Includes list of user's notes with title and preview of text.
 Text truncated to 200 characters. -->
 
 <div class="row">
-
   <div class="col" style="text-align: center;">
-      <h2 id='username_notes'>{{ user.username }}'s notes</h2>
+      <h2 id="username_notes">{{ user.username }}'s profile</h2>  
   </div>
+</div>
 
+<div class="row">
+  <div class="col" style="text-align: center;">
+    
+    <p class="user_email">Email: {{ userProfile.email }}</p>
+    <p class="user_fav_artist">Favorite Artist: {{ userProfile.fav_artist }}</p>
+    <p class="user_fav_venue">Favorite Venue: {{ userProfile.fav_venue }}</p>
+      
+    {% if user.is_authenticated %}
+      {% comment %} <button method='POST' href="{% url 'lmn:my_user_profile' user_pk=user.pk %}">Edit</button> {% endcomment %}
+      {% comment %} <button href="{% url 'lmn:my_user_profile' %}">Edit</button> {% endcomment %}
+      <a class="btn btn-outline-primary" href="{% url 'lmn:my_user_profile' user_pk=user.pk %}" role="button">Edit</a>
+    {% endif %}
+    
+  </div>
 </div>
 
 
+<div class="row">
+  <div class="col" style="text-align: center;">
+      <h2 id="username_notes">{{ user.username }}'s notes</h2>  
+  </div>
+</div>
 
 {% for note in notes %}
 

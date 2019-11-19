@@ -19,11 +19,12 @@ def get_venue_data():
             for venue in venue_tag:
                 name = venue.text
                 for city_state in city_state_tag:
-                    city = city_state.text
-                    state = city_state.text
-                    venue_list.append(name, city, state)
-                    Venue(name=name, city=city, state=state).save()
-        
+                    if venue not in venue_list and city_state not in venue_list:
+                        city = city_state.text
+                        state = city_state.text
+                        venue_list.append(name, city, state)
+                        Venue(name=name, city=city, state=state).save()
+
             return venue_list
         else:
             raise Exception('Error retrieving contents')

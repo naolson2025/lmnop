@@ -17,7 +17,7 @@ def get_artist_data():
             # Get artists data and add them to the artist_list
             for artist in artists:
                 name = artist.text
-                artist_data.append(name)
+                artist_list.append(name)
                 Artist(name=name).save()
         
 

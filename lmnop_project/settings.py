@@ -79,22 +79,22 @@ DATABASES = {
 
 # Uncomment this when you are ready to use Postgres.
 
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'artists-venues-shows-notes',
-    #     'USER' : 'fan-girl',
-    #     #'PASSWORD' : os.getenv('LMNOP_DB_PW'),
-    #     'PASSWORD' : os.getenv('LMNOP_DB_PW2'),
-    #     'HOST' : '/cloudsql/lmnop-nick-vina-khan-james:us-central1:lmnop-db',
-    #     'PORT' : '5432',
-    # },
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'artists-venues-shows-notes',
+        'USER' : 'fan-girl',
+        #'PASSWORD' : os.getenv('LMNOP_DB_PW'),
+        'PASSWORD' : os.getenv('LMNOP_DB_PW2'),
+        'HOST' : '/cloudsql/lmnop-nick-vina-khan-james:us-central1:lmnop-db',
+        'PORT' : '5432',
+    },
 
     # When you use Postgres, comment out or remove this DB config. 
     
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'lmnop.sqlite',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': 'lmnop.sqlite',
+    # }
 }
 
 if not os.getenv('GAE_INSTANCE'):
@@ -151,4 +151,4 @@ LOGOUT_REDIRECT_URL = 'lmn:homepage'
 
 GS_STATIC_FILE_BUCKET = 'lmnop-nick-vina-khan-james.appspot.com'
 
-#STATIC_URL = f'https://storage.cloud.google.com/{GS_STATIC_FILE_BUCKET}/static'
+STATIC_URL = f'https://storage.cloud.google.com/{GS_STATIC_FILE_BUCKET}/static'

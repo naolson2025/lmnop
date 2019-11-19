@@ -1,11 +1,13 @@
 from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse
+
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .models import Venue, Artist, Note, Show
 from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm
 
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+
 from django.contrib.auth import authenticate, login, logout
 
 from django.utils import timezone
@@ -67,3 +69,17 @@ def delete_own_note(request, note_pk):
     else:
         raise PermissionDenied("Can't delete someone else's note!")  # import it from django.core.exceptions
         # return redirect("lmn:latest_notes")
+
+
+# for displaying images
+
+def display_note_images(request):
+    if request.method == 'GET':
+        # getting all the objects of note.
+        Notes = Note.objects.all()
+        return render((request, 'display_note_images.html',
+                       {'note_images': Notes}))
+
+
+def success(request):
+    return HttpResponse('successfuly uploaded')

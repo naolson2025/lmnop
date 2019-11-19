@@ -27,10 +27,24 @@
 
 </form>
 
+<form method = "post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
 {% endblock %}
 {% if request.user == note.user %}
     <a href="/link/to/view/">Delete</a>
+{% endif %}
 
 
+
+ <h3>Photo</h3>
+    {% if note.photo %}
+        <img src="{{ note.photo.url }}">
+    {% else %}
+        <P>No photo uploaded</p>
+    {% endif %
 
 {% endif %}

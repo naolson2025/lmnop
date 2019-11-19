@@ -1,3 +1,4 @@
+from django.core.files.storage import default_storage
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
@@ -51,6 +52,26 @@ class Note(models.Model):
     title = models.CharField(max_length=200, blank=False)
     text = models.TextField(max_length=1000, blank=False)
     posted_date = models.DateTimeField(blank=False)
+    photo = models.ImageField(upload_to='user_images/', blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        # get reference to previous version of this Place
+        old_note = Note.objects.filter(pk=self.pk).first()
+        if old_note and old_note.photo:
+            if old_note.photo != self.photo:
+                self.delete_photo(old_note.photo)
+
+        super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        if self.photo:
+            self.delete_photo(self.photo)
+
+        super().delete(*args, **kwargs)
+
+    def delete_photo(self, photo):
+        if default_storage.exists(photo.name):
+            default_storage.delete(photo.name)
 
     def publish(self):
         posted_date = datetime.datetime.today()

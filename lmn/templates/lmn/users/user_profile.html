@@ -21,7 +21,9 @@ Text truncated to 200 characters. -->
     <p class="user_fav_venue">Favorite Venue: {{ userProfile.fav_venue }}</p>
       
     {% if user.is_authenticated %}
-      <button method='POST' action="{% url 'lmn:my_user_profile' user_pk=user.pk %}">Edit</button>
+      {% comment %} <button method='POST' href="{% url 'lmn:my_user_profile' user_pk=user.pk %}">Edit</button> {% endcomment %}
+      {% comment %} <button href="{% url 'lmn:my_user_profile' %}">Edit</button> {% endcomment %}
+      <a class="btn btn-outline-primary" href="{% url 'lmn:my_user_profile' user_pk=user.pk %}" role="button">Edit</a>
     {% endif %}
     
   </div>

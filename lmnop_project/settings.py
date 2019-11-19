@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '8c01$#j44g3znb)$q0()8)!%ts-jc)k12!a75-!63qb%bj=d4k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -88,6 +88,15 @@ DATABASES = {
         'HOST' : '/cloudsql/lmnop-nick-vina-khan-james:us-central1:lmnop-db',
         'PORT' : '5432',
     },
+    
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'LMNOP',
+    #     'USER' : 'LMNOP',
+    #     'PASSWORD' : os.environ['LMNOP_DB_PW'],
+    #     'HOST' : 'salt',
+    #     'PORT' : '5432',
+    # },
 
     # When you use Postgres, comment out or remove this DB config. 
     
@@ -107,6 +116,8 @@ else:
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
+
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {

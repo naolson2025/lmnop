@@ -18,10 +18,13 @@ def get_venue_data():
     
             for venue in venue_tag:
                 name = venue.text
+                venue_list.append(name)
                 for city_state in city_state_tag:
-                    city = city_state.text
-                    state = city_state.text
-                    venue_list.append(name, city, state)
+                    city_state_string = city_state.text
+                    city = city_state_string.split(',', 1)[0]
+                    state = city_state_string.split(',', 2)[1]
+                    venue_list.append(city)
+                    venue_list.append(state)
                     Venue(name=name, city=city, state=state).save()
         
             return venue_list

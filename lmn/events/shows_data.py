@@ -3,6 +3,7 @@ from .venues_data import get_venue_data
 from .artists_data import get_artist_data 
 from ..models import Show
 from django.http import HttpResponse
+from bs4 import BeautifulSoup
 
 def get_show_data():
     try:

@@ -1,6 +1,5 @@
 import requests
 import urllib.request
-from bs4 import BeautifulSoup
 
 # Web scrapping from bandsintown website
 # https://www.dataquest.io/blog/web-scraping-beautifulsoup/
@@ -15,3 +14,4 @@ def load_URL():
         return response
     except Exception as e:
         print(e)
+

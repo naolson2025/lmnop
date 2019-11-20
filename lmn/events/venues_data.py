@@ -1,6 +1,7 @@
 from .load_events_url import load_URL
 from ..models import Venue
 from django.http import HttpResponse
+from bs4 import BeautifulSoup
 
 def get_venue_data():
     try:
@@ -23,7 +24,7 @@ def get_venue_data():
                         state = city_state.text
                         venue_list.append(name, city, state)
                         Venue(name=name, city=city, state=state).save()
-        
+
             return venue_list
         else:
             raise Exception('Error retrieving contents')

@@ -1,6 +1,7 @@
 from .load_events_url import load_URL
 from ..models import Artist
 from django.http import HttpResponse
+from bs4 import BeautifulSoup
 
 # Get a list of artists
 def get_artist_data():
@@ -17,10 +18,9 @@ def get_artist_data():
             for artist in artists:
                 if artist not in artist_list:
                     name = artist.text
-                    artist_data.append(name)
+                    artist_list.append(name)
                     Artist(name=name).save()
-        
-
+                    
             return artist_list
         else:
             raise Exception('Error retrieving contents')

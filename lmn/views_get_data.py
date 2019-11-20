@@ -15,4 +15,3 @@ def gather_event_data(request):
 
     except Exception as e:
         print(e)
-    

@@ -20,7 +20,9 @@ def get_show_data():
                 show_date = date.text
                 artist = get_artist_data()
                 venue = get_venue_data()
-                show_list.append(show_date, artist, venue)
+                show_list.append(show_date)
+                show_list.append(artist)
+                show_list.append(venue)
                 Show(show_date=show_date, artist=artist, venue=venue).save()
 
             return show_list

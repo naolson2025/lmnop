@@ -27,6 +27,7 @@ def get_venue_data():
                     venue_list.append(state)
                     Venue(name=name, city=city, state=state).save()
         
+        
             return venue_list
         else:
             raise Exception('Error retrieving contents')

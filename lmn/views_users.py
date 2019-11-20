@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
+# https://docs.djangoproject.com/en/2.2/ref/contrib/messages/
+from django.contrib import messages
 
-from .models import Venue, Artist, Note, Show
+from .models import Venue, Artist, Note, Show, UserProfile
 from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm, UserProfileEditForm
 
 from django.contrib.auth.decorators import login_required
@@ -13,6 +15,7 @@ from django.utils import timezone
 
 def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
+    #userprofile = UserProfile.objects.get(user=user.pk)
     usernotes = Note.objects.filter(user=user.pk).order_by('posted_date').reverse()
     return render(request, 'lmn/users/user_profile.html', {'user' : user , 'notes' : usernotes })
 
@@ -29,10 +32,15 @@ def my_user_profile(request):
             profile = form.save(commit=False)
             profile.user = request.user
             profile.save()
+            messages.success(request, 'Your profile was successfully updated!')
             return redirect('lmn:user_profile', user_pk=request.user.pk)
         else:
-            form = UserProfileEditForm()
-            return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
+            messages.error(request, 'Please correct the error')
+        
+    else:
+        form = UserProfileEditForm()
+
+    return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
 
 
 

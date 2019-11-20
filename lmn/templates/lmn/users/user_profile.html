@@ -16,9 +16,8 @@ Text truncated to 200 characters. -->
 <div class="row">
   <div class="col" style="text-align: center;">
     
-    <p class="user_email">Email: {{ userProfile.email }}</p>
-    <p class="user_fav_artist">Favorite Artist: {{ userProfile.fav_artist }}</p>
-    <p class="user_fav_venue">Favorite Venue: {{ userProfile.fav_venue }}</p>
+    <p class="user_fav_artist">Favorite Artist: {{ user.userprofile.fav_artist }}</p>
+    <p class="user_fav_venue">Favorite Venue: {{ user.userprofile.fav_venue }}</p>
       
     {% if user.is_authenticated %}
       <button method='POST' action="{% url 'lmn:my_user_profile' user_pk=user.pk %}">Edit</button>

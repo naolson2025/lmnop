@@ -15,5 +15,3 @@ def load_URL():
     except Exception as e:
         print(e)
 
-
-

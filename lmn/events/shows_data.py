@@ -25,6 +25,7 @@ def get_show_data():
                 show_list.append(venue)
                 Show(show_date=show_date, artist=artist, venue=venue).save()
 
+
             return show_list
         else:
             raise Exception('Error retrieving contents')

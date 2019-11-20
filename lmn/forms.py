@@ -1,5 +1,5 @@
 from django import forms
-from .models import Note
+from .models import Note, UserProfile
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -17,6 +17,7 @@ class ArtistSearchForm(forms.Form):
 class NewNoteForm(forms.ModelForm):
     class Meta:
         model = Note
+        #fields = ('title', 'text','photo')
         fields = ('title', 'text')
 
 
@@ -78,3 +79,9 @@ class UserRegistrationForm(UserCreationForm):
             user.save()
 
         return user
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        #fields = ['fav_artist', 'fav_venue']
+        fields = ('fav_artist', 'fav_venue')

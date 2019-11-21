@@ -20,7 +20,7 @@ def get_artist_data():
                     name = artist.text
                     artist_list.append(name)
                     Artist(name=name).save()
-                    
+
             return artist_list
         else:
             raise Exception('Error retrieving contents')

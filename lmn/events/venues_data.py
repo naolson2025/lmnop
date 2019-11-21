@@ -12,13 +12,17 @@ def get_venue_data():
         if response is not None:
             soup = BeautifulSoup(response.text, "html.parser")
 
+            article_tag = soup.find_all('div', {'eventList-5e5f25ca'})
+
             # Get venues data and add them to the venue_list
-            venue_tag = soup.find_all('div', {'class' : 'event-6891d84c'})
-            city_state_tag = soup.find_all('div', {'class' : 'event-c5863c62'})
-    
-            for venue in venue_tag:
-                name = venue.text
-                venue_list.append(name)
+            for article in article_tag:
+                venue_tag = soup.find_all('div', {'class' : 'event-6891d84c'})
+                city_state_tag = soup.find_all('div', {'class' : 'event-c5863c62'})
+                
+                for venue in venue_tag:
+                    name = venue.text
+                    venue_list.append(name)
+
                 for city_state in city_state_tag:
                     city_state_string = city_state.text
                     city = city_state_string.split(',', 1)[0]

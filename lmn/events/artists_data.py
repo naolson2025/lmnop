@@ -12,14 +12,19 @@ def get_artist_data():
 
         if response is not None:
             soup = BeautifulSoup(response.text, "html.parser")
-            artists = soup.find_all('h2', {'class' : 'event-5daafce9'})
+            
+            article_tag = soup.find_all('div', {'eventList-5e5f25ca'})
 
-            # Get artists data and add them to the artist_list
-            for artist in artists:
-                if artist not in artist_list:
-                    name = artist.text
-                    artist_list.append(name)
-                    Artist(name=name).save()
+            for article in article_tag:
+
+                artists = soup.find_all('h2', {'class' : 'event-5daafce9'})
+
+                # Get artists data and add them to the artist_list
+                for artist in artists:
+                    if artist not in artist_list:
+                        name = artist.text
+                        artist_list.append(name)
+                        Artist(name=name).save()
 
             return artist_list
         else:

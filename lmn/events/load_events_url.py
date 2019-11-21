@@ -6,7 +6,7 @@ import urllib.request
 def load_URL():
     try:
         # Bandsintown url
-        url = 'https://www.bandsintown.com/en?came_from=257&sort_by_filter=Number+of+RSVPs'
+        url = 'https://www.bandsintown.com/en?place_id=ChIJvbt3k5Azs1IRB-56L4TJn5M'
 
         # Parsing HTML using BeautifulSoup
         response = requests.get(url)

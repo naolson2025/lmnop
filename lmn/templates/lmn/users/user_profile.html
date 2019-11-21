@@ -9,7 +9,14 @@ Text truncated to 200 characters. -->
 
 <div class="row">
   <div class="col" style="text-align: center;">
+<<<<<<< HEAD
       <h2 id="username_notes">{{ user.username }}'s profile</h2>  
+=======
+      <h2 id='username_notes'>{{ user.username }}'s profile</h2>
+      <p>Favorite Artist: {{ user.UserProfile.fav_artist }}</p>
+      <p>Favorite Venue: {{ user.UserProfile.fav_venue }}</p>
+      <a href="{% url 'lmn:my_user_profile' %}">Edit Profile</a>
+>>>>>>> 770f88d0acb25c66a5f2830cee1d827d1d33110b
   </div>
 </div>
 
@@ -29,6 +36,13 @@ Text truncated to 200 characters. -->
   </div>
 </div>
 
+<div class="row">
+
+  <div class="col" style="text-align: center;">
+      <h2 id='username_notes'>{{ user.username }}'s notes</h2>
+  </div>
+
+</div>
 
 <div class="row">
   <div class="col" style="text-align: center;">
@@ -57,6 +71,5 @@ Text truncated to 200 characters. -->
 {% empty %}
   <p id='no_records'>No notes.</p>
 {% endfor %}
-
 
 {% endblock %}

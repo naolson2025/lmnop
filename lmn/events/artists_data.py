@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from bs4 import BeautifulSoup
 
 # Get a list of artists
+# https://yanfei.site/docs/dpsa/references/PyWebScrapingBook.pdf
 def get_artist_data():
     try:
         artist_list = []

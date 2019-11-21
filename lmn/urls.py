@@ -29,7 +29,11 @@ urlpatterns = [
 
     # User related
     path('user/profile/<int:user_pk>/', views_users.user_profile, name='user_profile'),
+<<<<<<< HEAD
     path('user/profile/edit/<int:user_pk>/', views_users.my_user_profile, name='my_user_profile'),
+=======
+    path('user/profile/edit/', views_users.my_user_profile, name='my_user_profile'),
+>>>>>>> 770f88d0acb25c66a5f2830cee1d827d1d33110b
 
     # Account related
     path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
@@ -40,4 +44,9 @@ urlpatterns = [
     path('gather/shows/', views_get_data.gather_event_data, name='shows_data'),
     path('gather/artists/', views_get_data.gather_event_data, name='artists_data'),
     path('gather/venues/', views_get_data.gather_event_data, name='venues_data')
+<<<<<<< HEAD
+=======
+    
+
+>>>>>>> 770f88d0acb25c66a5f2830cee1d827d1d33110b
 ]

@@ -14,6 +14,7 @@ class TestEventsData(unittest.TestCase):
         url = "https://www.bandsintown.com/en?place_id=ChIJvbt3k5Azs1IRB-56L4TJn5M"
         TestEventsData.bs = BeautifulSoup(urlopen(url), 'html.parser')
     
+    # Test if load the data is working
     def test_data_exists(self):
         artist_data = TestEventsData.bs.find_all('h2', {'class' : 'artist-data'})
         venue_data = TestEventsData.bs.find_all('div', {'class' : 'venue-data'})

@@ -5,7 +5,7 @@ import urllib.request
 # https://www.dataquest.io/blog/web-scraping-beautifulsoup/
 def load_URL():
     try:
-        # Bandsintown url
+        # Bandsintown url filter the data to show events around minneapolis
         url = 'https://www.bandsintown.com/en?place_id=ChIJvbt3k5Azs1IRB-56L4TJn5M'
 
         # Parsing HTML using BeautifulSoup

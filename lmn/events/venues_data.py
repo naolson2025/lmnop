@@ -5,10 +5,13 @@ from bs4 import BeautifulSoup
 
 def get_venue_data():
     try:
+        # Create venue list to hold venue's name, city, and state
         venue_list = []
 
         response = load_URL()
 
+        # If response is not None, get the url html parser, find all the needed data,
+        # save the data in the list, and send the data into Venue models.
         if response is not None:
             soup = BeautifulSoup(response.text, "html.parser")
 
@@ -28,7 +31,7 @@ def get_venue_data():
                     Venue(name=name, city=city, state=state).save()
         
       
-            return venue_list
+            return venue_list # return the list
         else:
             raise Exception('Error retrieving contents')
             

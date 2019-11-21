@@ -1,7 +1,10 @@
 {% extends 'lmn/base.html' %}
 {% block content %}
 
-<div class="row">
+
+
+
+<div>
 
     <div class="col" style="text-align: center;">
         <h2 id="note_page_title">{{ note.show.artist.name }} at {{ note.show.venue.name }} by <a href="{% url 'lmn:user_profile' user_pk=note.user.pk %}">{{ user.username }}</a></h2>
@@ -26,6 +29,13 @@
     <button type=submit class="delete">Delete</button>
 
 </form>
+
+<body>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=example.org" class="fa fa-facebook"></a>
+    <a href="https://twitter.com/intent/tweet" class="fa fa-twitter"></a>
+</body>
+
+    
 
 {% endblock %}
 {% if request.user == note.user %}

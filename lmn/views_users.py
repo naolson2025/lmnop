@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import Venue, Artist, Note, Show
-from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm
+from .models import Venue, Artist, Note, Show, UserProfile
+from .forms import VenueSearchForm, NewNoteForm, ArtistSearchForm, UserRegistrationForm, UserProfileEditForm
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -19,9 +19,27 @@ def user_profile(request, user_pk):
 
 
 @login_required
-def my_user_profile(request):
-    # TODO - editable version for logged-in user to edit own profile
-    return redirect('lmn:user_profile', user_pk=request.user.pk)
+def my_user_profile(request, user_pk):
+
+    #user_key = get_object_or_404(UserProfile, pk=user_pk)
+
+    if request.method == 'POST':
+
+        form = UserProfileEditForm(request.POST)
+        
+        if form.is_valid():
+            profile = form.save(commit=False)
+            #profile.user = request.user
+            profile = request.user
+            profile.save()
+            return redirect('lmn:user_profile', user_pk=request.user.pk)
+        else:
+            form = UserProfileEditForm()
+            return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
+
+    else:
+        form = UserProfileEditForm()
+        return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
 
 
 

@@ -1,0 +1,9 @@
+.gcloudignore
+.git
+.gitignore
+__pycache__
+/setup.cfg
+.vscode
+.idea
+venv
+cloud_sql_proxy.exe

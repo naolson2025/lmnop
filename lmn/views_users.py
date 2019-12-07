@@ -14,7 +14,8 @@ from django.utils import timezone
 def user_profile(request, user_pk):
     user = User.objects.get(pk=user_pk)
     usernotes = Note.objects.filter(user=user.pk).order_by('posted_date').reverse()
-    return render(request, 'lmn/users/user_profile.html', {'user' : user , 'notes' : usernotes })
+    profile = UserProfile.objects.get(user=user_pk)
+    return render(request, 'lmn/users/user_profile.html', {'user' : user , 'notes' : usernotes, 'UserProfile': profile })
 
 
 
@@ -22,24 +23,23 @@ def user_profile(request, user_pk):
 def my_user_profile(request, user_pk):
 
     #user_key = get_object_or_404(UserProfile, pk=user_pk)
-
+    profile = UserProfile.objects.get(user=user_pk)
+        
     if request.method == 'POST':
 
-        form = ProfileEditForm(request.POST)
+        form = ProfileEditForm(request.POST, instance=profile)
         
         if form.is_valid():
             profile = form.save(commit=False)
-            #profile.user = request.user
-            profile = request.user
             profile.save()
             return redirect('lmn:user_profile', user_pk=request.user.pk)
         else:
             form = ProfileEditForm()
-            return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
+            return render(request, 'lmn/users/my_user_profile.html', { 'form': form })
 
     else:
-        form = ProfileEditForm()
-        return render(request, 'lmn/users/my_user_profile.html', { 'form' : form })
+        form = ProfileEditForm(instance=profile)
+        return render(request, 'lmn/users/my_user_profile.html', { 'form': form })
 
 
 
